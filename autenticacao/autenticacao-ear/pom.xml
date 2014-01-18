@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.usjt.autenticacao</groupId>
+		<artifactId>autenticacao</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>autenticacao-ear</artifactId>
+	<packaging>ear</packaging>
+	<name>Autenticação EAR</name>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>br.usjt.autenticacao</groupId>
+			<artifactId>autenticacao-ejb</artifactId>
+			<version>0.0.1</version>
+			<type>ejb</type>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<finalName>Login-EAR</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<version>7</version>
+					<initializeInOrder>true</initializeInOrder>
+					<modules>
+						<ejbModule>
+							<groupId>br.usjt.autenticacao</groupId>
+							<artifactId>autenticacao-ejb</artifactId>
+							<bundleFileName>autenticacao-ejb.jar</bundleFileName>
+						</ejbModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

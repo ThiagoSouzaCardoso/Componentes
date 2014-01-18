@@ -133,5 +133,6 @@
 
 	<modules>
 		<module>autenticacao-ejb</module>
+		<module>autenticacao-ear</module>
 	</modules>
 </project>
