@@ -135,5 +135,6 @@
 		<module>autenticacao-ejb</module>
 		<module>autenticacao-ear</module>
 		<module>autenticacao-web</module>
+		<module>autenticacao-jpa</module>
 	</modules>
 </project>

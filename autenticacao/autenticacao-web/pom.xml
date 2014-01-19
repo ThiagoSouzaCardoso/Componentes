@@ -37,6 +37,11 @@
 			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>br.usjt.autenticacao</groupId>
+			<artifactId>autenticacao-jpa</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

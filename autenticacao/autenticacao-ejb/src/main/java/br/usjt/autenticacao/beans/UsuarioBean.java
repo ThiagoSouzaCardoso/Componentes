@@ -3,6 +3,8 @@ package br.usjt.autenticacao.beans;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+import br.usjt.autenticacao.model.Usuario;
+
 /**
  * Session Bean implementation class UsuarioBean
  */
@@ -10,11 +12,10 @@ import javax.ejb.Stateless;
 @LocalBean
 public class UsuarioBean {
 
-    /**
-     * Default constructor. 
-     */
+	Usuario usuario;
+	
+	
     public UsuarioBean() {
-        // TODO Auto-generated constructor stub
     }
 
 }

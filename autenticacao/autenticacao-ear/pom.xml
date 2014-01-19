@@ -25,8 +25,14 @@
 			<version>0.0.1</version>
 			<type>ejb</type>
 		</dependency>
-
+		<dependency>
+			<groupId>br.usjt.autenticacao</groupId>
+			<artifactId>autenticacao-jpa</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<finalName>Login-EAR</finalName>
 		<plugins>
@@ -37,7 +43,14 @@
 				<configuration>
 					<version>7</version>
 					<initializeInOrder>true</initializeInOrder>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<modules>
+						<jarModule>
+							<groupId>br.usjt.autenticacao</groupId>
+							<artifactId>autenticacao-jpa</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+							<bundleFileName>jpa.jar</bundleFileName>
+						</jarModule>
 						<ejbModule>
 							<groupId>br.usjt.autenticacao</groupId>
 							<artifactId>autenticacao-ejb</artifactId>
