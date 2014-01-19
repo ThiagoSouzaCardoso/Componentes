@@ -5,12 +5,13 @@
     <artifactId>autenticacao</artifactId>
     <version>0.0.1</version>
   </parent>
-  <artifactId>autenticacao-jpa</artifactId>
+  <artifactId>autenticacao-ejb-client</artifactId>
   <dependencies>
   	<dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-lang3</artifactId>
-  		<version>3.1</version>
+  		<groupId>br.usjt.autenticacao</groupId>
+  		<artifactId>autenticacao-jpa</artifactId>
+  		<version>0.0.1</version>
+  		<scope>provided</scope>
   	</dependency>
   </dependencies>
 </project>

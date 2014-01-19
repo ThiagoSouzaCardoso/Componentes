@@ -13,6 +13,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 @MappedSuperclass
 public class AbstractEntity<T> implements Serializable {
@@ -56,6 +60,29 @@ public class AbstractEntity<T> implements Serializable {
 
 	protected void setDateCriation(Date dateCriation) {
 		this.dateCriation = dateCriation;
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).
+			       append(id).
+			       append(dateCriation).
+			       append(lastChange).
+			       toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		 return EqualsBuilder.reflectionEquals(this, obj);
+	}
+	
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).
+				   append("id",id).
+			       append("dateCriation",dateCriation).
+			       append("lastChange",lastChange).
+			       toString();
 	}
 
 }

@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.SequenceGenerator;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @SequenceGenerator(name = "default_gen", sequenceName = "usuario_seq", initialValue = 1 ,allocationSize = 50)
 public class Usuario extends AbstractEntity<Integer> {
@@ -108,5 +112,41 @@ public class Usuario extends AbstractEntity<Integer> {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder(17, 37).
+			       append(nome).
+			       append(sobrenome).
+			       append(email).
+			       append(endereco).
+			       append(telefoneCelular).
+			       append(telefoneComercial).
+			       append(cpf).
+			       append(cep).
+			       append(rg).
+			       toHashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		 return EqualsBuilder.reflectionEquals(this, obj);
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).
+				   append("nome",nome).
+			       append("sobrenome",sobrenome).
+			       append("email",email).
+			       append("endereco",endereco).
+			       append("telefoneCelular",telefoneCelular).
+			       append("telefoneComercial",telefoneComercial).
+			       append("cpf",cpf).
+			       append("cep",cep).
+			       append("rg",rg).
+			       toString();
+	}
+	
 
 }
