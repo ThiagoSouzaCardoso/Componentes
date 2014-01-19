@@ -1,6 +1,7 @@
 package br.usjt.autenticacao.beans;
 
-import javax.ejb.EJB;
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -14,21 +15,39 @@ import br.usjt.autenticacao.model.Usuario;
 @Remote(UsuarioBeanRemote.class)
 public class UsuarioBean implements UsuarioBeanRemote {
 
-	@EJB
-	UsuarioSession session;
+	
 	
     public UsuarioBean() {
     }
 
 	@Override
-	public void adiciona(Usuario usuario) {
-		System.out.println(session.constainLogin(usuario));
-		System.out.println(usuario);
-		session.addLogins(usuario);
-		System.out.println(session.constainLogin(usuario));
+	public void salvar(Usuario usuario) {
 		
 	}
 
-    
+	@Override
+	public void atualizar(Usuario usuario) {
+		
+	}
+
+	@Override
+	public void deletar(Usuario usuario) {
+		
+	}
+
+	@Override
+	public Usuario consultarPorCPF(String cpf) {
+		return null;
+	}
+
+	@Override
+	public Usuario consultarPorEmail(String email) {
+		return null;
+	}
+
+	@Override
+	public List<Usuario> consultarTodosUsuarios() {
+		return null;
+	}
     
 }
