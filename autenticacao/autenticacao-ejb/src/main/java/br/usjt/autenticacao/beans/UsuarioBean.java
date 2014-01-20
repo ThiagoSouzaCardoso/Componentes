@@ -19,6 +19,7 @@ public class UsuarioBean implements UsuarioBeanRemote {
 	
     public UsuarioBean() {
     }
+    
 
 	@Override
 	public void salvar(Usuario usuario) {

@@ -19,13 +19,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
 @MappedSuperclass
-public class AbstractEntity<T> implements Serializable {
+public class AbstractEntity<T extends Number> implements Serializable {
 
 	private static final long serialVersionUID = -1917797514577545855L;
-
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_gen")
+	@Column(name="ID")
     private T id;
 	
 	@Basic
@@ -37,6 +37,9 @@ public class AbstractEntity<T> implements Serializable {
     @Column(name = "DT_CRIATION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCriation;
+    
+    @Column(name = "STATUS",nullable=false)
+    private Boolean ativo = false;
 
 	protected T getId() {
 		return id;
@@ -62,12 +65,21 @@ public class AbstractEntity<T> implements Serializable {
 		this.dateCriation = dateCriation;
 	}
 
+	protected Boolean getAtivo() {
+		return ativo;
+	}
+
+	protected void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37).
 			       append(id).
 			       append(dateCriation).
 			       append(lastChange).
+			       append(ativo).
 			       toHashCode();
 	}
 
@@ -82,6 +94,7 @@ public class AbstractEntity<T> implements Serializable {
 				   append("id",id).
 			       append("dateCriation",dateCriation).
 			       append("lastChange",lastChange).
+			       append("ativo",ativo).
 			       toString();
 	}
 

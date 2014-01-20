@@ -26,25 +26,25 @@ public class UsuarioSession implements Serializable{
     }
 
     
-    private Set<Usuario> logins;
+    private Set<Usuario> usuarios;
 
     @PostConstruct
     void startup() {
-        logins = new HashSet<Usuario>();
+        usuarios = new HashSet<Usuario>();
     }
 
     @Lock(LockType.WRITE)
-    public void addLogins(Usuario login) {
-        logins.add(login);
+    public void addLogins(Usuario usuario) {
+        usuarios.add(usuario);
     }
 
-    public void removeLogins(Usuario login) {
-        logins.remove(login);
+    public void removeLogins(Usuario usuario) {
+        usuarios.remove(usuario);
     }
 
     @Lock(LockType.READ)
-    public boolean constainLogin(Usuario login) {
-        return logins.contains(login);
+    public boolean constainLogin(Usuario usuario) {
+        return usuarios.contains(usuario);
     }
 
     
