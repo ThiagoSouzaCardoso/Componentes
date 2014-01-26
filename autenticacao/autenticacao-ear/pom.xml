@@ -50,12 +50,6 @@
 					<initializeInOrder>true</initializeInOrder>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<modules>
-						<jarModule>
-							<groupId>br.usjt.autenticacao</groupId>
-							<artifactId>autenticacao-jpa</artifactId>
-							<includeInApplicationXml>true</includeInApplicationXml>
-							<bundleFileName>jpa.jar</bundleFileName>
-						</jarModule>
 						<ejbModule>
 							<groupId>br.usjt.autenticacao</groupId>
 							<artifactId>autenticacao-ejb</artifactId>

@@ -1,11 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://java.sun.com/jsf/passthrough">
 
 
 	<BODY>
 		SEILA!!!
 		<h:button value="#{loginController.teste()}">Aperta</h:button>
+		<h:inputText value="#{bean.value}" p:placeholder="Enter text"/>
 	</BODY>
 
 </html>
