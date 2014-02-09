@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+         <datasource jta="true" jndi-name="java:jboss/datasources/autenticacaoDS" pool-name="autenticacao" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:postgresql://localhost:5432/teste</connection-url>
+                    <driver-class>org.postgresql.Driver</driver-class>
+                    <driver>postgresql</driver>
+                    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+                    
+                    <pool>
+                        <min-pool-size>1</min-pool-size>
+                        <max-pool-size>5</max-pool-size>
+                    </pool>
+                    <security>
+                        <user-name>postgres</user-name>
+                        <password>123456</password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>SELECT current_timestamp</check-valid-connection-sql>
+                    </validation>
+                    <statement>
+                        <prepared-statement-cache-size>32</prepared-statement-cache-size>
+                        <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
+      </datasource>
+</datasources>
