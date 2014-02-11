@@ -17,10 +17,10 @@ public class Perfil extends AbstractEntity<Integer> {
     private static final long serialVersionUID = -7150450920822142743L;
 
     @Column(name = "NAME", unique = true, nullable = false)
-    public String nome;
+    private String nome;
 
     @Column(name = "DESCRIPTION")
-    public String descricao;
+    private String descricao;
 
     public String getNome() {
         return nome;
