@@ -1,18 +1,15 @@
 package br.usjt.autenticacao.model;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "USUARIO", uniqueConstraints = { @UniqueConstraint(columnNames = "LOGIN"), @UniqueConstraint(columnNames = "EMAIL"),
@@ -49,15 +46,14 @@ public class Usuario extends AbstractEntity<Integer> {
     @Column(name = "CEP")
     private String cep;
 
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "PERFIL_ID_FK", nullable = true)
-    private Perfil perfil;
-
     @Column(name = "LOGIN", nullable = false, unique = true)
     private String login;
 
     @Column(name = "PASSWORD", nullable = false)
     private String senha;
+
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "usuario")
+    private Set<Perfil> perfil;
 
     public String getNome() {
         return nome;
@@ -131,11 +127,11 @@ public class Usuario extends AbstractEntity<Integer> {
         this.cep = cep;
     }
 
-    public Perfil getPerfil() {
+    public Set<Perfil> getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(Perfil perfil) {
+    public void setPerfil(Set<Perfil> perfil) {
         this.perfil = perfil;
     }
 
@@ -153,24 +149,6 @@ public class Usuario extends AbstractEntity<Integer> {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(nome).append(sobrenome).append(email).append(endereco).append(telefoneCelular).append(telefoneComercial)
-                .append(cpf).append(cep).append(rg).append(login).append(senha).append(perfil).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("nome", nome).append("sobrenome", sobrenome).append("email", email).append("endereco", endereco)
-                .append("telefoneCelular", telefoneCelular).append("telefoneComercial", telefoneComercial).append("cpf", cpf).append("cep", cep)
-                .append("rg", rg).append("senha", senha).append("login", login).append("perfil", perfil).toString();
     }
 
 }

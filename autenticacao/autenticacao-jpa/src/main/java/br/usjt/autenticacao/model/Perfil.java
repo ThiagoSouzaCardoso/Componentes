@@ -1,16 +1,18 @@
 package br.usjt.autenticacao.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "PERFIL")
+@Table(name = "PERFIL", uniqueConstraints = { @UniqueConstraint(columnNames = "NAME") })
 @SequenceGenerator(name = "default_gen", sequenceName = "perfil_seq", initialValue = 1, allocationSize = 50)
 public class Perfil extends AbstractEntity<Integer> {
 
@@ -21,6 +23,13 @@ public class Perfil extends AbstractEntity<Integer> {
 
     @Column(name = "DESCRIPTION")
     private String descricao;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "perfil")
+    private Set<Recurso> recurso;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USUARIO_ID_FK", nullable = true)
+    private Set<Usuario> usuario;
 
     public String getNome() {
         return nome;
@@ -36,21 +45,6 @@ public class Perfil extends AbstractEntity<Integer> {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(nome).append(descricao).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return EqualsBuilder.reflectionEquals(this, obj);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("nome", nome).append("descricao", descricao).toString();
     }
 
 }
