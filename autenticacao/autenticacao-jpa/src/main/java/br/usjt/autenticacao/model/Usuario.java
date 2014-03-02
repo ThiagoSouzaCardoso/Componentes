@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "USUARIO", uniqueConstraints = { @UniqueConstraint(columnNames = "LOGIN"), @UniqueConstraint(columnNames = "EMAIL"),
-        @UniqueConstraint(columnNames = "CPF") })
+@Table(name = "USUARIO", uniqueConstraints = { @UniqueConstraint(columnNames = "LOGIN", name = "login"),
+        @UniqueConstraint(columnNames = "EMAIL", name = "email"), @UniqueConstraint(columnNames = "CPF", name = "cpf") })
 @SequenceGenerator(name = "default_gen", sequenceName = "usuario_seq", initialValue = 1, allocationSize = 50)
 public class Usuario extends AbstractEntity<Integer> {
 
@@ -37,7 +37,7 @@ public class Usuario extends AbstractEntity<Integer> {
     @Column(name = "BUSINESS_PHONE")
     private String telefoneComercial;
 
-    @Column(unique = true, length = 11, name = "CPF")
+    @Column(length = 11, name = "CPF")
     private String cpf;
 
     @Column(name = "RG", length = 15)
@@ -46,7 +46,7 @@ public class Usuario extends AbstractEntity<Integer> {
     @Column(name = "CEP")
     private String cep;
 
-    @Column(name = "LOGIN", nullable = false, unique = true)
+    @Column(name = "LOGIN", nullable = false)
     private String login;
 
     @Column(name = "PASSWORD", nullable = false)
