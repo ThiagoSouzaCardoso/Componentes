@@ -5,31 +5,30 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "PERFIL", uniqueConstraints = { @UniqueConstraint(columnNames = "NAME", name = "nome") })
+@Table(name = "PERFIL", uniqueConstraints = { @UniqueConstraint(columnNames = "NOME", name = "nome_perfil") })
 @SequenceGenerator(name = "default_gen", sequenceName = "perfil_seq", initialValue = 1, allocationSize = 50)
 public class Perfil extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = -7150450920822142743L;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRICAO")
     private String descricao;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "perfil")
     private Set<Modulo> modulo;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USUARIO_ID_FK", nullable = true)
-    private Set<Usuario> usuario;
+    @OneToOne(mappedBy = "perfil")
+    private Usuario usuario;
 
     public String getNome() {
         return nome;
@@ -55,11 +54,11 @@ public class Perfil extends AbstractEntity<Integer> {
         this.modulo = modulos;
     }
 
-    public Set<Usuario> getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Set<Usuario> usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

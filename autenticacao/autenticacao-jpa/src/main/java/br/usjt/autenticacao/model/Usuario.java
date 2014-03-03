@@ -1,12 +1,10 @@
 package br.usjt.autenticacao.model;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -19,16 +17,16 @@ public class Usuario extends AbstractEntity<Integer> {
 
     private static final long serialVersionUID = -1484765293112914587L;
 
-    @Column(name = "NAME", length = 80)
+    @Column(name = "NOME", length = 80)
     private String nome;
 
-    @Column(name = "LASTNAME", length = 100)
+    @Column(name = "SOBRENOME", length = 100)
     private String sobrenome;
 
     @Column(name = "EMAIL", length = 100)
     private String email;
 
-    @Column(name = "ADDRESS")
+    @Column(name = "ENDERECO")
     private String endereco;
 
     @Column(name = "CELL_PHONE")
@@ -49,11 +47,12 @@ public class Usuario extends AbstractEntity<Integer> {
     @Column(name = "LOGIN", nullable = false)
     private String login;
 
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(name = "SENHA", nullable = false)
     private String senha;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER, mappedBy = "usuario")
-    private Set<Perfil> perfil;
+    @OneToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "Fk_usuario_perfil"), name = "PERFIL_ID_FK", nullable = true)
+    private Perfil perfil;
 
     public String getNome() {
         return nome;
@@ -127,11 +126,11 @@ public class Usuario extends AbstractEntity<Integer> {
         this.cep = cep;
     }
 
-    public Set<Perfil> getPerfil() {
+    public Perfil getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(Set<Perfil> perfil) {
+    public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
 

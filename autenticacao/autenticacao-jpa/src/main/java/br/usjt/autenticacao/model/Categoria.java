@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "CATEGORIA", uniqueConstraints = { @UniqueConstraint(columnNames = "NOME", name = "nome") })
+@Table(name = "CATEGORIA", uniqueConstraints = { @UniqueConstraint(columnNames = "NOME", name = "nome_categoria") })
 @SequenceGenerator(name = "default_gen", sequenceName = "categoria_seq", initialValue = 1, allocationSize = 50)
 public class Categoria extends AbstractEntity<Integer> {
 
@@ -26,14 +27,14 @@ public class Categoria extends AbstractEntity<Integer> {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "MODULO_ID_FK")
+    @JoinColumn(foreignKey = @ForeignKey(name = "Fk_categoria_modulo"), name = "MODULO_ID_FK")
     private Modulo modulo;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
     private Set<Recurso> recurso;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CATEGORIA_PAI_ID", referencedColumnName = "ID")
+    @JoinColumn(foreignKey = @ForeignKey(name = "fk_categoria_pai"), name = "CATEGORIA_PAI_ID", referencedColumnName = "ID")
     private Categoria parent;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
